@@ -1,0 +1,27 @@
+{
+	"expo": {
+		"name": "safehome",
+		"slug": "safehome",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"userInterfaceStyle": "light",
+		"splash": {
+			"image": "./assets/splash.png",
+			"resizeMode": "cover"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "safehome"
+		},
+		"android": {
+			"adaptiveIcon": {
+				"backgroundColor": "#ffffff"
+			}
+		},
+		"web": {},
+		"extra": {
+			"eas": {}
+		}
+	}
+}
