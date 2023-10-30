@@ -1,230 +1,175 @@
 import {
-  StyleSheet,
-  Image,
-  TextInput,
-  Text,
-  View,
-  SafeAreaView,
-  TouchableOpacity,
-  ScrollView,
+	StyleSheet,
+	Image,
+	TextInput,
+	Text,
+	View,
+	SafeAreaView,
+	TouchableOpacity,
+	ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { useNavigation } from "@react-navigation/native";
 
-const ExtendedGoal = () => {
-  const navigation = useNavigation();
-  const [focusedInput, setFocusedInput] = useState(null);
-  const [email, setEmail] = useState("");
-  const [password, setPasssword] = useState("");
-  const [name, setName] = useState("");
-  const [gender, setGender] = useState("");
+import { color, size, font } from "../../utilities/constants";
+import { button, formStyle, text } from "../../utilities/styles";
 
-  const headerTintColor = "#000000";
+const ExtendGoal = () => {
+	const navigation = useNavigation();
+	const [focusedInput, setFocusedInput] = useState(null);
+	const [amount, setAmount] = useState("");
+	const [fundingSource, setFundingSource] = useState("");
+	const [periodicAmount, setPeriodicAmount] = useState("");
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      title: "",
-      headerTintColor,
-      headerBackTitleVisible: false,
-    });
-  }, [navigation]);
+	const headerTintColor = "#000000";
 
-  const handleEmailChange = (email) => {
-    setEmail(email);
-  };
-  const handleNameChange = (name) => {
-    setName(name);
-  };
-  const handlePasswordChange = (password) => {
-    setPasssword(password);
-  };
-  const handleGenderChange = (gender) => {
-    setGender(gender);
-  };
-  const data = [
-    {
-      label: "My Funds",
-      value: "My Funds",
-    },
-    {
-      label: "Debit Card",
-      value: "Debit Card",
-    },
-    {
-      label: "Bank Transfer",
-      value: "Bank Transfer",
-    },
-  ];
+	React.useLayoutEffect(() => {
+		navigation.setOptions({
+			title: "",
+			headerTintColor,
+			headerBackTitleVisible: false,
+		});
+	}, [navigation]);
 
-  return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: "#fff",
-      }}
-    >
-      <ScrollView>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "#fff",
-            padding: 16,
-            marginBottom: 220,
-          }}
-        >
-          <View>
-            <View
-              style={{
-                marginTop: 32,
-              }}
-            >
-              <Text style={styles.header}>Extended Goal Amount</Text>
-              <Text style={styles.content}>
-                You can now extend your goal amount. More option coming soon.{" "}
-              </Text>
-            </View>
-            <View
-              style={{
-                marginTop: 24,
-              }}
-            >
-              <View>
-                <Text style={styles.textLabel}>Increase Goal amount from</Text>
-                <TextInput
-                  style={styles.textInput} // Use the dynamically defined style
-                  onFocus={() => setFocusedInput("email")}
-                  onBlur={() => setFocusedInput(null)}
-                  value={email}
-                  placeholder="Enter your an amount"
-                  placeholderTextColor={"#1e1e1e45"}
-                  onChangeText={handleEmailChange}
-                />
-              </View>
+	const handleAmountChange = (amount) => {
+		setAmount(amount);
+	};
+	const handleFundingSourceChange = (fundingSource) => {
+		setFundingSource(fundingSource);
+	};
+	const handlePeriodicAmountChange = (periodicAmount) => {
+		setPeriodicAmount(periodicAmount);
+	};
+	const data = [
+		{
+			label: "Debit Card",
+			value: "Debit Card",
+		},
+		{
+			label: "Bank Transfer",
+			value: "Bank Transfer",
+		},
+	];
 
-              <View>
-                <Text style={styles.textLabel}>Change Savings Frequency</Text>
-                <Dropdown
-                  style={styles.dropdown}
-                  itemTextStyle={{
-                    fontSize: 17,
-                    color: `#121212`,
-                    fontFamily: "Regular",
-                  }}
-                  itemContainerStyle={{
-                    backgroundColor: "#ffffff",
-                  }}
-                  data={data}
-                  maxHeight={300}
-                  labelField="label"
-                  valueField="value"
-                  placeholderTextColor={"#1e1e1e45"}
-                  placeholder="Choose Funding Source"
-                  value={gender}
-                  onChange={handleGenderChange}
-                />
-              </View>
-              <View>
-                <Text style={styles.textLabel}>
-                  Enter a Periodic Amount(if applicable)
-                </Text>
-                <TextInput
-                  style={styles.textInput} // Use the dynamically defined style
-                  onFocus={() => setFocusedInput("gender")}
-                  onBlur={() => setFocusedInput(null)}
-                  value={gender}
-                  placeholder="Enter your an amount"
-                  placeholderTextColor={"#1e1e1e45"}
-                  onChangeText={handleGenderChange}
-                />
-              </View>
-            </View>
-            <View>
-              <TouchableOpacity
-                style={styles.button}
-                // onPress={() => navigation.navigate("KYCProcessing")}
-              >
-                <Text style={styles.buttonText}>Submit</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+	return (
+		<SafeAreaView
+			style={{
+				flex: 1,
+				backgroundColor: "#fff",
+			}}
+		>
+			<ScrollView>
+				<View
+					style={{
+						flex: 1,
+						backgroundColor: "#fff",
+						paddingLeft: 16,
+						paddingRight: 16,
+						marginBottom: 20,
+					}}
+				>
+					<View>
+						<View
+							style={{
+								marginTop: 20,
+							}}
+						>
+							<Text style={text.header}>Extend Goal Amount</Text>
+							<Text style={[text.content]}>
+								You can now extend your goal amount.
+							</Text>
+							<Text
+								style={[text.content, { marginTop: 0, lineHeight: size.md }]}
+							>
+								More options coming soon.
+							</Text>
+						</View>
+						<View
+							style={{
+								marginTop: 0,
+							}}
+						>
+							<View>
+								<Text style={formStyle.label}>Increase Goal Amount (₦)</Text>
+								<TextInput
+									style={formStyle.input} // Use the dynamically defined style
+									onFocus={() => setFocusedInput("amount")}
+									onBlur={() => setFocusedInput(null)}
+									value={amount}
+									placeholder="Enter your an amount"
+									placeholderTextColor={color.placeholder}
+									onChangeText={handleAmountChange}
+								/>
+							</View>
+
+							<View>
+								<Text style={formStyle.label}>Funding Source</Text>
+								<Dropdown
+									style={formStyle.dropdown.container}
+									itemTextStyle={formStyle.dropdown.text}
+									placeholderStyle={formStyle.dropdown.placeholder}
+									selectedTextStyle={formStyle.dropdown.text}
+									itemContainerStyle={formStyle.dropdown.itemContainer}
+									data={data}
+									maxHeight={300}
+									labelField="label"
+									valueField="value"
+									placeholderTextColor={color.placeholder}
+									placeholder="Choose Funding Source"
+									value={fundingSource}
+									onChange={handleFundingSourceChange}
+								/>
+							</View>
+
+							<View>
+								<Text style={formStyle.label}>
+									Enter Periodic Amount (if applicable)
+								</Text>
+								<TextInput
+									style={formStyle.input} // Use the dynamically defined style
+									onFocus={() => setFocusedInput("periodicAmount")}
+									onBlur={() => setFocusedInput(null)}
+									value={periodicAmount}
+									placeholder="Periodic Amount"
+									placeholderTextColor={color.placeholder}
+									onChangeText={handlePeriodicAmountChange}
+								/>
+							</View>
+						</View>
+						<View style={{ marginTop: 64 }}>
+							<TouchableOpacity
+								style={button.fill}
+								// onPress={() => navigation.navigate("KYCProcessing")}
+							>
+								<Text style={text.buttonFill}>Top up</Text>
+							</TouchableOpacity>
+						</View>
+					</View>
+				</View>
+			</ScrollView>
+		</SafeAreaView>
+	);
 };
 
-export default ExtendedGoal;
+export default ExtendGoal;
 
-const styles = StyleSheet.create({
-  logo: {
-    height: 60,
-    width: 160,
-  },
-  viewForLogo: {
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 48,
-  },
-  header: {
-    fontSize: 28,
-    fontFamily: "MontserratSemiBold",
-    textAlign: "left",
-    color: "#1E0700",
-  },
-  content: {
-    color: "#1A374D",
-    fontFamily: "MontserratLight",
-    marginTop: 4,
-    fontSize: 16,
-  },
-  textInput: {
-    height: 56,
-    borderRadius: 8,
-    backgroundColor: "#F9F9F9",
-    fontSize: 14,
-    fontFamily: "Regular",
-    padding: 20,
-    marginTop: 4,
-    // marginBottom: 24,
-    width: "100%",
-  },
-  textLabel: {
-    marginTop: 24,
-    fontFamily: "Regular",
-    fontSize: 16,
-    color: "#1A374D",
-  },
-  buttonText: {
-    fontFamily: "MontserratSemiBold",
-    fontSize: 16,
-    color: "#ffffff",
-  },
-  button: {
-    height: 56,
-    backgroundColor: "#ff9100",
-    marginTop: 64,
-    padding: 16,
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 4,
-  },
-  orangeText: {
-    color: "#FF6100",
-    textAlign: "center",
-    fontFamily: "Regular",
-    fontSize: 16,
-  },
-  dropdown: {
-    height: 55,
-    // borderColor: `${theme.text}65`,
-    //  borderWidth: 0.5,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-    marginTop: 4,
-    // color: gray
-    backgroundColor: "#f9f9f9",
-  },
-});
+// const styles = StyleSheet.create({
+// 	header: {
+// 		fontSize: size.lg,
+// 		fontFamily: font.semibold,
+// 		textAlign: "left",
+// 		color: color.highlight,
+// 	},
+// 	content: {
+// 		color: color.text,
+// 		fontFamily: font.regular,
+// 		marginTop: 4,
+// 		fontSize: size.base,
+// 	},
+// 	buttonText: {
+// 		fontFamily: "MontserratSemiBold",
+// 		fontSize: size.base,
+// 		color: "#ffffff",
+// 	},
+// });

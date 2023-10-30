@@ -10,15 +10,15 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { FontAwesome5 } from "react-native-vector-icons";
-import Transaction from "../components/Transaction";
-import Overview from "../components/Overview";
+import Transaction from "../../components/Transaction";
 import { useNavigation } from "@react-navigation/native";
-import GoalsComponent from "../components/Goals";
-import Tabs from "../components/Tabs";
-const imageHouse = require("../images/house.png");
+import LockedGoal from "../../components/LockedGoal";
+import Tabs from "../../components/Tabs";
+import Overview from "../../components/Overview";
+const imageHouse = require("../../images/house.png");
 
-import { color, size, font } from "../utilities/constants";
-import { button, formStyle, text, card, tab } from "../utilities/styles";
+import { color, size, font } from "../../utilities/constants";
+import { button, formStyle, text, card, tab } from "../../utilities/styles";
 
 const overviewData = [
 	{
@@ -41,53 +41,76 @@ const tabsData = [
 		text: "Ongoing Savings",
 	},
 	{
-		tab: "Completed",
-		text: "Completed",
+		tab: "Explore",
+		text: "Explore",
 	},
 	{
-		tab: "Transactions",
-		text: "Transactions",
+		tab: "Completed",
+		text: "Completed",
 	},
 ];
 
 const OngoingSavingsComponent = () => (
-	<View style={{ gap: 15, marginTop: 10 }}>
-		<GoalsComponent />
-		<GoalsComponent />
-		<GoalsComponent />
-	</View>
-);
-
-const CompletedComponent = () => (
 	<View
 		style={{
 			flexDirection: "column",
 			justifyContent: "center",
 			alignItems: "center",
 			padding: 48,
-			height: 300,
+			height: 250,
 		}}
 	>
 		<FontAwesome5 name="bullseye" size={48} />
 		<Text style={[text.light, { textAlign: "center", marginTop: 24 }]}>
-			You have no Completed savings plan, Create a goal or lock funds to get
-			started.
+			You have no ongoing investment. Click on New Opportunities to find
+			investment plans and get started.
 		</Text>
 	</View>
 );
 
-const TransactionsComponent = () => (
+const ExploreComponent = () => (
 	<View>
-		<Transaction />
-		<Transaction />
-		<Transaction />
-		<Transaction />
+		<ScrollView
+			horizontal={true}
+			showsHorizontalScrollIndicator={false}
+			style={{
+				marginBottom: 10,
+				marginTop: 5,
+				flexDirection: "row",
+			}}
+		>
+			<Text style={[tab.activeFilter, { marginLeft: 0 }]}>All</Text>
+			<Text style={tab.normalFilter}>Land owners club</Text>
+			<Text style={tab.normalFilter}>Home owners club</Text>
+			<Text style={tab.normalFilter}>Office owners club</Text>
+		</ScrollView>
+		<View style={{ gap: 15, marginTop: 5 }}>
+			<LockedGoal />
+			<LockedGoal />
+			<LockedGoal />
+		</View>
 	</View>
 );
 
-const PiggyHome = () => {
-	const [selectedComponent, setSelectedComponent] = useState("Ongoing Savings");
+const CompletedComponent = () => (
+	<View style={{ gap: 15, marginTop: 10 }}>
+		<LockedGoal />
+		<LockedGoal />
+		<LockedGoal />
+	</View>
+);
 
+const LockedHome = () => {
+	const [selectedComponent, setSelectedComponent] = useState("Ongoing Savings");
+	const headerTintColor = "#000000";
+
+	React.useLayoutEffect(() => {
+		navigation.setOptions({
+			title: "",
+			headerTintColor,
+			headerBackTitleVisible: false,
+		});
+	}, [navigation]);
 	const navigation = useNavigation();
 	return (
 		<SafeAreaView
@@ -103,7 +126,7 @@ const PiggyHome = () => {
 			>
 				<View style={[styles.topView]}>
 					<View style={styles.viewWidths}>
-						<Text style={styles.name}>Savings</Text>
+						<Text style={styles.name}>Locked Savings</Text>
 					</View>
 					<TouchableOpacity
 						onPress={() => navigation.navigate("NotificationPage")}
@@ -124,7 +147,7 @@ const PiggyHome = () => {
 					</TouchableOpacity>
 				</View>
 
-				<Overview data={overviewData} type="savings" />
+				<Overview data={overviewData} type="investments" />
 
 				<View
 					style={{
@@ -135,17 +158,10 @@ const PiggyHome = () => {
 					}}
 				>
 					<TouchableOpacity
-						onPress={() => navigation.navigate("GoalSavings")}
+						onPress={() => navigation.navigate("LockedFundForm")}
 						style={button.fill}
 					>
-						<Text style={text.buttonFill}>Goal Savings</Text>
-					</TouchableOpacity>
-
-					<TouchableOpacity
-						onPress={() => navigation.navigate("LockedHome")}
-						style={button.outline}
-					>
-						<Text style={text.buttonOutline}>Locked Savings</Text>
+						<Text style={text.buttonFill}>Lock Funds</Text>
 					</TouchableOpacity>
 				</View>
 
@@ -165,8 +181,8 @@ const PiggyHome = () => {
 						{selectedComponent === "Ongoing Savings" && (
 							<OngoingSavingsComponent />
 						)}
+						{selectedComponent === "Explore" && <ExploreComponent />}
 						{selectedComponent === "Completed" && <CompletedComponent />}
-						{selectedComponent === "Transactions" && <TransactionsComponent />}
 					</View>
 				</View>
 			</ScrollView>
@@ -174,16 +190,17 @@ const PiggyHome = () => {
 	);
 };
 
-export default PiggyHome;
+export default LockedHome;
 
 const styles = StyleSheet.create({
 	hi: {
 		color: "#808080",
-		fontSize: 16,
+		fontSize: 13,
 		fontFamily: "MontserratLight",
 	},
 	name: {
 		fontSize: 18,
+		color: "#8D4000",
 		fontFamily: "MontserratSemiBold",
 	},
 	viewWidths: {
@@ -204,7 +221,7 @@ const styles = StyleSheet.create({
 		borderRadius: 16,
 	},
 	cards: {
-		width: 300,
+		// width: Dimensions.get("window").width,
 		height: 200,
 		borderRadius: 12,
 		padding: 24,
@@ -223,7 +240,7 @@ const styles = StyleSheet.create({
 		fontFamily: "Regular",
 	},
 	addFunds: {
-		width: "48.5%",
+		width: "100%",
 		height: 50,
 		backgroundColor: "#1E0700",
 		justifyContent: "center",
@@ -232,12 +249,12 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		color: "white",
-		fontSize: 14,
-		fontFamily: "Regular",
+		fontSize: 16,
+		fontFamily: "MontserratSemiBold",
 	},
 	texts: {
 		color: "#1E0700",
-		fontSize: 14,
+		fontSize: 16,
 		fontFamily: "Regular",
 	},
 	withdraw: {
@@ -251,14 +268,15 @@ const styles = StyleSheet.create({
 	},
 	transaction: {
 		color: "#121212",
-		fontSize: 14,
+		fontSize: 13,
 		fontFamily: "MontserratLight",
 	},
 	activeText: {
-		color: "#ff9100",
-		paddingBottom: 5,
-		borderColor: "#ff9100",
-		borderBottomWidth: 2,
+		color: "#8D4000",
+		paddingBottom: 1,
+		borderColor: "#8D4000",
+		borderBottomWidth: 3,
+		borderRadius: 2,
 		fontFamily: "MontserratSemiBold",
 	},
 	goalComponent: {

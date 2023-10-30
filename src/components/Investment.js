@@ -88,7 +88,7 @@ const GoalsComponentInvestment = () => {
 						<View
 							style={{
 								width: "100%",
-								height: 35,
+								height: 30,
 								backgroundColor: color.green,
 								borderRadius: 5,
 								justifyContent: "center",
@@ -99,7 +99,7 @@ const GoalsComponentInvestment = () => {
 								style={{
 									fontSize: size.sm,
 									color: "#ffffff",
-									fontFamily: font.semibold,
+									fontFamily: font.regular,
 								}}
 							>
 								100 available

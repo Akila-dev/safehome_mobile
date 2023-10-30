@@ -8,9 +8,6 @@ import ComingSoon from "../src/Home/ComingSoon";
 import Profile from "../src/Home/Profile";
 import PiggyHome from "../src/Home/Piggy";
 
-import { color as col, size, font } from "../src/utilities/constants";
-import { button, formStyle, text, card } from "../src/utilities/styles";
-
 const Tab = createBottomTabNavigator();
 
 function BottomNavigation() {
@@ -49,7 +46,7 @@ function BottomNavigation() {
 						<FontAwesome5
 							style={[
 								tabBarIconStyle,
-								{ color: focused ? col.button : col.placeholder },
+								{ color: focused ? "#1E0700" : "#66666666" },
 							]}
 							name="home"
 							size={24}
@@ -67,7 +64,7 @@ function BottomNavigation() {
 						<FontAwesome5
 							style={[
 								tabBarIconStyle,
-								{ color: focused ? col.button : col.placeholder },
+								{ color: focused ? "#1E0700" : "#66666666" },
 							]}
 							name="piggy-bank"
 							size={24}
@@ -87,7 +84,7 @@ function BottomNavigation() {
 						<FontAwesome5
 							style={[
 								tabBarIconStyle,
-								{ color: focused ? col.button : col.placeholder },
+								{ color: focused ? "#1E0700" : "#66666666" },
 							]}
 							name="chart-bar"
 							size={24}
@@ -107,7 +104,7 @@ function BottomNavigation() {
 						<FontAwesome5
 							style={[
 								tabBarIconStyle,
-								{ color: focused ? col.button : col.placeholder },
+								{ color: focused ? "#1E0700" : "#66666666" },
 							]}
 							name="receipt"
 							size={24}
@@ -175,7 +172,7 @@ function BottomNavigation() {
 						<FontAwesome5
 							style={[
 								tabBarIconStyle,
-								{ color: focused ? col.button : col.placeholder },
+								{ color: focused ? "#1E0700" : "#66666666" },
 							]}
 							name="user-alt"
 							size={24}

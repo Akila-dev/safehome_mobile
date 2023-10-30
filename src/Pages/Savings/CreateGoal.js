@@ -1,66 +1,30 @@
 import {
-	SafeAreaView,
-	Dimensions,
-	ScrollView,
 	StyleSheet,
+	Image,
+	TextInput,
 	Text,
 	View,
-	Image,
+	SafeAreaView,
 	TouchableOpacity,
+	ScrollView,
 } from "react-native";
 import React, { useState } from "react";
-import { FontAwesome5 } from "react-native-vector-icons";
-import Transaction from "../../components/Transaction";
-import Overview from "../../components/Overview";
+import { Dropdown } from "react-native-element-dropdown";
 import { useNavigation } from "@react-navigation/native";
-import GoalsComponent from "../../components/Goals";
+const house = require("../../images/houses.png");
 
 import { color, size, font } from "../../utilities/constants";
-import { button, formStyle, text, card, tab } from "../../utilities/styles";
+import { button, formStyle, text } from "../../utilities/styles";
 
-const overviewData = [
-	{
-		icon: "bullseye",
-		title: "Total Balance",
-		price: "₦1,000,000.00",
-		pa: "10% p.a",
-	},
-	{
-		icon: "chart-bar",
-		title: "Total Interest",
-		price: "₦100,000.00",
-		pa: "10% p.a",
-	},
-];
+const AddCreateGoal = () => {
+	const navigation = useNavigation();
+	const [focusedInput, setFocusedInput] = useState(null);
+	const [goalTitle, setGoalTitle] = useState("");
+	const [password, setPasssword] = useState("");
+	const [goalPurpose, setGoalPurpose] = useState("");
+	const [savePreference, setSavePreference] = useState("");
+	const [automatePlanOption, setAutomatePlanOption] = useState("");
 
-const OngoingSavingsComponent = () => (
-	<View style={{ gap: 5 }}>
-		<GoalsComponent />
-		<GoalsComponent />
-		<GoalsComponent />
-	</View>
-);
-
-const CompletedComponent = () => (
-	<View
-		style={{
-			flexDirection: "column",
-			justifyContent: "center",
-			alignItems: "center",
-			padding: 48,
-			height: 300,
-		}}
-	>
-		<FontAwesome5 name="bullseye" size={48} />
-		<Text style={[text.light, { textAlign: "center", marginTop: 24 }]}>
-			You have no Completed savings plan, Create a goal or lock funds to get
-			started.
-		</Text>
-	</View>
-);
-
-const CreateGoal = () => {
-	const [selectedComponent, setSelectedComponent] = useState("Ongoing Savings");
 	const headerTintColor = "#000000";
 
 	React.useLayoutEffect(() => {
@@ -71,103 +35,177 @@ const CreateGoal = () => {
 		});
 	}, [navigation]);
 
-	const navigation = useNavigation();
+	const handleGoalTitleChange = (goalTitle) => {
+		setGoalTitle(goalTitle);
+	};
+	const handleGoalPurposeChange = (goalPurpose) => {
+		setGoalPurpose(goalPurpose);
+	};
+	const handlePasswordChange = (password) => {
+		setPasssword(password);
+	};
+	const handleSavePreferenceChange = (savePreference) => {
+		setSavePreference(savePreference);
+	};
+	const handleAutomatePlanOptionChange = (savePreference) => {
+		setAutomatePlanOption(savePreference);
+	};
+	const data = [
+		{
+			label: "Daily",
+			value: "Daily",
+		},
+		{
+			label: "Weekly",
+			value: "Weekly",
+		},
+		{
+			label: "Monthly",
+			value: "Monthly",
+		},
+		{
+			label: "Anytime",
+			value: "Anytime",
+		},
+	];
+
+	const dataTwo = [
+		{
+			label: "Yes, I’d like my savings automated",
+			value: "Yes, I’d like my savings automated",
+		},
+		{
+			label: "No, I’ll make my savings myself",
+			value: "No, I’ll make my savings myself",
+		},
+	];
 	return (
 		<SafeAreaView
 			style={{
 				flex: 1,
-				backgroundColor: "#ffffff",
-				marginTop: -24,
+				backgroundColor: "#fff",
 			}}
 		>
-			<ScrollView
-				style={{
-					padding: 16,
-				}}
-			>
-				<View style={[styles.topView]}>
-					<View style={styles.viewWidths}>
-						<Text style={styles.name}>Savings</Text>
-					</View>
-					<TouchableOpacity
-						onPress={() => navigation.navigate("NotificationPage")}
-						style={styles.viewNotification}
-					>
-						<FontAwesome5 name="bell" size={28} />
-						<View
-							style={{
-								width: 8,
-								height: 8,
-								backgroundColor: "#ff0000",
-								position: "absolute",
-								borderRadius: 12,
-								right: 6,
-								top: 10,
-							}}
-						></View>
-					</TouchableOpacity>
-				</View>
-
-				<Overview data={overviewData} type="savings" />
-
+			<ScrollView>
 				<View
 					style={{
-						marginTop: 24,
-						width: "100%",
-						flexDirection: "row",
-						gap: 12,
-					}}
-				>
-					<TouchableOpacity
-						onPress={() => navigation.navigate("AddCreateGoal")}
-						style={[button.fill]}
-					>
-						<Text style={text.buttonFill}>Create Goal</Text>
-					</TouchableOpacity>
-				</View>
-
-				<View
-					style={{
-						marginTop: 38,
-						marginBottom: 48,
+						flex: 1,
+						backgroundColor: "#fff",
+						padding: 16,
+						marginBottom: 40,
 					}}
 				>
 					<View>
 						<View
 							style={{
-								marginBottom: 10,
-								justifyContent: "space-around",
-								flexDirection: "row",
+								marginTop: 0,
+							}}
+						>
+							<Text style={text.header}>Create a Goal</Text>
+							<Text style={text.light}>
+								Reach your personal goal much faster
+							</Text>
+						</View>
+
+						<Image
+							style={{
+								marginTop: 34,
+								width: "100%",
+								borderRadius: 8,
+								height: 200,
+							}}
+							source={house}
+						/>
+						<View
+							style={{
+								marginTop: 4,
 							}}
 						>
 							<View>
-								<Text
-									style={[
-										tab.normal,
-										selectedComponent === "Ongoing Savings" && tab.active,
-									]}
-									onPress={() => setSelectedComponent("Ongoing Savings")}
-								>
-									Ongoing Savings
-								</Text>
+								<Text style={formStyle.label}>Goal Title</Text>
+								<TextInput
+									style={formStyle.input} // Use the dynamically defined style
+									onFocus={() => setFocusedInput("goalTitle")}
+									onBlur={() => setFocusedInput(null)}
+									value={goalTitle}
+									placeholder="Enter a Goal Title"
+									placeholderTextColor={color.placeholder}
+									onChangeText={handleGoalTitleChange}
+								/>
 							</View>
-
 							<View>
-								<Text
-									style={[
-										tab.normal,
-										selectedComponent === "Completed" && tab.active,
-									]}
-									onPress={() => setSelectedComponent("Completed")}
-								>
-									Completed
+								<Text style={formStyle.label}>Purpose of Goal</Text>
+								<TextInput
+									style={formStyle.input} // Use the dynamically defined style
+									onFocus={() => setFocusedInput("goalPurpose")}
+									onBlur={() => setFocusedInput(null)}
+									value={goalPurpose}
+									placeholder="What’s the purpose of this Goal?"
+									placeholderTextColor={color.placeholder}
+									onChangeText={handleGoalPurposeChange}
+								/>
+							</View>
+							<View>
+								<Text style={formStyle.label}>Overall Goal Amount</Text>
+								<TextInput
+									style={formStyle.input} // Use the dynamically defined style
+									onFocus={() => setFocusedInput("savePreference")}
+									onBlur={() => setFocusedInput(null)}
+									value={savePreference}
+									placeholder="Individual"
+									placeholderTextColor={color.placeholder}
+									onChangeText={handleSavePreferenceChange}
+								/>
+							</View>
+							<View>
+								<Text style={formStyle.label}>
+									How will you prefer to save?
 								</Text>
+								<Dropdown
+									style={formStyle.dropdown.container}
+									itemTextStyle={formStyle.dropdown.text}
+									placeholderStyle={formStyle.dropdown.placeholder}
+									selectedTextStyle={formStyle.dropdown.text}
+									itemContainerStyle={formStyle.dropdown.itemContainer}
+									data={data}
+									maxHeight={300}
+									labelField="label"
+									valueField="value"
+									placeholderTextColor={color.placeholder}
+									placeholder="How will you prefer to save?"
+									value={savePreference}
+									onChange={handleSavePreferenceChange}
+								/>
+							</View>
+							<View>
+								<Text style={formStyle.label}>
+									Do you want to automate your plan?
+								</Text>
+								<Dropdown
+									style={formStyle.dropdown.container}
+									itemTextStyle={formStyle.dropdown.text}
+									placeholderStyle={formStyle.dropdown.placeholder}
+									selectedTextStyle={formStyle.dropdown.text}
+									itemContainerStyle={formStyle.dropdown.itemContainer}
+									data={dataTwo}
+									maxHeight={300}
+									labelField="label"
+									valueField="value"
+									placeholderTextColor={color.placeholder}
+									placeholder="How will you prefer to save?"
+									value={automatePlanOption}
+									onChange={handleAutomatePlanOptionChange}
+								/>
 							</View>
 						</View>
-						{selectedComponent === "Ongoing Savings" && (
-							<OngoingSavingsComponent />
-						)}
-						{selectedComponent === "Completed" && <CompletedComponent />}
+						<View style={{ marginTop: 60 }}>
+							<TouchableOpacity
+								style={button.fill}
+								onPress={() => navigation.navigate("AddCreateGoalNext")}
+							>
+								<Text style={text.buttonFill}>Continue Setup</Text>
+							</TouchableOpacity>
+						</View>
 					</View>
 				</View>
 			</ScrollView>
@@ -175,120 +213,77 @@ const CreateGoal = () => {
 	);
 };
 
-export default CreateGoal;
+export default AddCreateGoal;
 
 const styles = StyleSheet.create({
-	hi: {
-		color: "#808080",
-		fontSize: 16,
-		fontFamily: "MontserratLight",
+	logo: {
+		height: 60,
+		width: 160,
 	},
-	name: {
-		fontSize: 18,
-		fontFamily: "MontserratSemiBold",
-	},
-	viewWidths: {
-		width: "50%",
-	},
-	topView: {
-		marginTop: 24,
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-	},
-	viewNotification: {
-		width: 48,
-		backgroundColor: "#d9d9d945",
-		height: 48,
-		alignItems: "center",
-		justifyContent: "center",
-		borderRadius: 16,
-	},
-	cards: {
-		width: Dimensions.get("window").width,
-		height: 200,
-		borderRadius: 12,
-		padding: 24,
-		flexDirection: "column",
-		justifyContent: "space-between",
-		//marginRight: 16,
+	viewForLogo: {
 		width: "100%",
-	},
-	price: {
-		fontSize: 28,
-		marginTop: 4,
-		fontFamily: "MontserratSemiBold",
-	},
-	title: {
-		fontSize: 16,
-		fontFamily: "Regular",
-	},
-	addFunds: {
-		width: "48.5%",
-		height: 50,
-		backgroundColor: "#1E0700",
 		justifyContent: "center",
 		alignItems: "center",
-		borderRadius: 4,
+		marginTop: 48,
 	},
-	text: {
-		color: "white",
-		fontSize: 16,
-		fontFamily: "Regular",
-	},
-	texts: {
+	header: {
+		fontSize: 24,
+		fontFamily: "MontserratSemiBold",
+		textAlign: "left",
 		color: "#1E0700",
-		fontSize: 16,
-		fontFamily: "Regular",
 	},
-	withdraw: {
-		width: "48.5%",
-		height: 50,
-		borderColor: "#1E0700",
-		borderWidth: 1,
+	content: {
+		color: "#1A374D",
+		fontFamily: "MontserratLight",
+		marginTop: 4,
+		fontSize: 14,
+	},
+	textInput: {
+		height: 56,
+		borderRadius: 8,
+		backgroundColor: "#F9F9F9",
+		fontSize: 14,
+		fontFamily: "Regular",
+		padding: 20,
+		marginTop: 4,
+		// marginBottom: 24,
+		width: "100%",
+	},
+	textLabel: {
+		marginTop: 24,
+		fontFamily: "Regular",
+		fontSize: 16,
+		color: "#1A374D",
+	},
+	buttonText: {
+		fontFamily: "MontserratSemiBold",
+		fontSize: 16,
+		color: "#ffffff",
+	},
+	button: {
+		height: 56,
+		backgroundColor: "#ff9100",
+		marginTop: 64,
+		padding: 16,
+		width: "100%",
 		justifyContent: "center",
 		alignItems: "center",
 		borderRadius: 4,
 	},
-	transaction: {
-		color: "#121212",
-		fontSize: 12,
-		fontFamily: "MontserratLight",
+	orangeText: {
+		color: "#FF6100",
+		textAlign: "center",
+		fontFamily: "Regular",
+		fontSize: 16,
 	},
-	activeText: {
-		color: "#ff9100",
-		paddingBottom: 1,
-		borderColor: "#ff9100",
-		borderBottomWidth: 3,
-		borderRadius: 2,
-		fontFamily: "MontserratSemiBold",
-	},
-	goalComponent: {
-		borderColor: "#66666645",
-		borderWidth: 1,
-		borderRadius: 12,
-		padding: 12,
-		flexDirection: "row",
-		width: "100%",
-		gap: 12,
-		marginTop: 24,
-	},
-	goalComponentImage: {
-		width: "48%",
-	},
-	goalComponentView: {
-		//borderColor: "#66666645",
-		//borderWidth: 1,
-		justifyContent: "space-between",
-		borderRadius: 12,
-		// padding: 12,
-		height: 130,
-		flexDirection: "column",
-		width: "48%",
-		gap: 12,
-	},
-	flexGoal: {
-		flexDirection: "row",
-		justifyContent: "space-between",
+	dropdown: {
+		height: 55,
+		// borderColor: `${theme.text}65`,
+		//  borderWidth: 0.5,
+		borderRadius: 8,
+		paddingHorizontal: 8,
+		marginTop: 4,
+		// color: gray
+		backgroundColor: "#f9f9f9",
 	},
 });

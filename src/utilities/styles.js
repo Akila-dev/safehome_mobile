@@ -4,7 +4,7 @@ import { Dimensions } from "react-native";
 export const button = {
 	fill: {
 		flex: 1,
-		height: 50,
+		height: 45,
 		backgroundColor: color.button,
 		justifyContent: "center",
 		alignItems: "center",
@@ -12,7 +12,7 @@ export const button = {
 	},
 	outline: {
 		flex: 1,
-		height: 50,
+		height: 45,
 		borderColor: color.button,
 		borderWidth: 1,
 		justifyContent: "center",
@@ -26,7 +26,7 @@ export const formStyle = {
 		marginTop: 28,
 		marginBottom: 8,
 		fontFamily: "Regular",
-		fontSize: 14,
+		fontSize: size.base,
 		color: color.text,
 	},
 	input: {
@@ -80,14 +80,14 @@ export const text = {
 	},
 	content: {
 		color: color.text,
-		fontFamily: font.regular,
 		marginTop: 4,
+		fontFamily: font.regular,
 		fontSize: size.base,
 	},
 	light: {
 		color: color.text,
-		fontFamily: font.light,
 		marginTop: 4,
+		fontFamily: font.light,
 		fontSize: size.base,
 	},
 	buttonFill: {
@@ -97,7 +97,7 @@ export const text = {
 	},
 	buttonOutline: {
 		color: color.text,
-		fontSize: size.md,
+		fontSize: size.base,
 		fontFamily: "Regular",
 	},
 };
@@ -138,6 +138,14 @@ export const card = {
 		height: 8,
 		borderRadius: 4,
 		backgroundColor: color.b1,
+	},
+	card_no: {
+		marginTop: 4,
+		fontFamily: "MontserratSemiBold",
+		color: "white",
+		fontFamily: font.semibold,
+		fontSize: size.xl,
+		gap: 10,
 	},
 };
 
@@ -182,6 +190,7 @@ export const goalCard = {
 		fontFamily: font.light,
 	},
 	flexGoal: {
+		flex: 1,
 		flexDirection: "row",
 		alignItems: "flex-start",
 		justifyContent: "space-between",
@@ -221,5 +230,12 @@ export const tab = {
 		paddingVertical: 6,
 		borderRadius: 6,
 		marginLeft: 15,
+	},
+};
+
+export const flex = {
+	row: {
+		flexDirection: "row",
+		gap: 15,
 	},
 };

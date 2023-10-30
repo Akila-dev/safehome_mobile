@@ -14,11 +14,8 @@ import { FontAwesome5 } from "react-native-vector-icons";
 import Transaction from "../components/Transaction";
 import Overview from "../components/Overview";
 import { useNavigation } from "@react-navigation/native";
-import GoalsComponent from "../components/Goals";
-import NewGoalsComponent from "../components/NewGoals";
-import NewGoal from "../components/NewLocked";
-import LockedGoalsComponent from "../components/Locked";
 import GoalsComponentInvestment from "../components/Investment";
+import Tabs from "../components/Tabs";
 const imageHouse = require("../images/house.png");
 const fontScale = PixelRatio.getFontScale();
 const getFontSize = (size) => size / fontScale;
@@ -41,7 +38,40 @@ const overviewData = [
 	},
 ];
 
+const tabsData = [
+	{
+		tab: "Investment",
+		text: "My Investment",
+	},
+	{
+		tab: "NewOpportunities",
+		text: "New Opportunities",
+	},
+	{
+		tab: "Completed",
+		text: "Completed",
+	},
+];
+
 const InvestmentComponent = () => (
+	<View
+		style={{
+			flexDirection: "column",
+			justifyContent: "center",
+			alignItems: "center",
+			padding: 48,
+			height: 250,
+		}}
+	>
+		<FontAwesome5 name="bullseye" size={48} />
+		<Text style={[text.light, { textAlign: "center", marginTop: 24 }]}>
+			You have no ongoing investment. Click on New Opportunities to find
+			investment plans and get started.
+		</Text>
+	</View>
+);
+
+const NewOpportunitiesComponent = () => (
 	<View>
 		<ScrollView
 			horizontal={true}
@@ -65,28 +95,11 @@ const InvestmentComponent = () => (
 	</View>
 );
 
-const NewOpportunitiesComponent = () => (
-	<View
-		style={{
-			flexDirection: "column",
-			justifyContent: "center",
-			alignItems: "center",
-			padding: 48,
-			height: 250,
-		}}
-	>
-		<FontAwesome5 name="bullseye" size={48} />
-		<Text style={[text.light, { textAlign: "center", marginTop: 24 }]}>
-			You have no NewOpportuinvestment plan, Create a goal or lock funds to get
-			started.
-		</Text>
-	</View>
-);
-
 const CompletedComponent = () => (
 	<View style={{ gap: 15, marginTop: 10 }}>
-		<GoalsComponent />
-		<GoalsComponent />
+		<GoalsComponentInvestment />
+		<GoalsComponentInvestment />
+		<GoalsComponentInvestment />
 	</View>
 );
 
@@ -148,7 +161,8 @@ const Charts = () => {
 					}}
 				>
 					<TouchableOpacity
-						onPress={() => navigation.navigate("LockedFundForm")}
+						// onPress={() => navigation.navigate("LockedFundForm")}
+						onPress={() => setSelectedComponent("NewOpportunities")}
 						style={button.fill}
 					>
 						<Text style={text.buttonFill}>Invest Now</Text>
@@ -162,51 +176,12 @@ const Charts = () => {
 					}}
 				>
 					<View>
-						<ScrollView
-							horizontal={true}
-							showsHorizontalScrollIndicator={false}
-							style={{
-								marginBottom: 10,
-								flexDirection: "row",
-							}}
-						>
-							<View>
-								<Text
-									style={[
-										tab.normal,
-										selectedComponent === "Investment" && tab.active,
-										{ marginRight: 16 },
-									]}
-									onPress={() => setSelectedComponent("Investment")}
-								>
-									My Investment
-								</Text>
-							</View>
+						<Tabs
+							data={tabsData}
+							func={setSelectedComponent}
+							selected={selectedComponent}
+						/>
 
-							<View>
-								<Text
-									style={[
-										tab.normal,
-										selectedComponent === "NewOpportunities" && tab.active,
-										{ marginRight: 16 },
-									]}
-									onPress={() => setSelectedComponent("NewOpportunities")}
-								>
-									New Opportunities
-								</Text>
-							</View>
-							<View>
-								<Text
-									style={[
-										tab.normal,
-										selectedComponent === "Completed" && tab.active,
-									]}
-									onPress={() => setSelectedComponent("Completed")}
-								>
-									Completed
-								</Text>
-							</View>
-						</ScrollView>
 						{selectedComponent === "Investment" && <InvestmentComponent />}
 						{selectedComponent === "NewOpportunities" && (
 							<NewOpportunitiesComponent />

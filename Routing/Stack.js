@@ -12,14 +12,14 @@ import TransactionPage from "../src/Pages/Home/Transaction";
 import NotificationPage from "../src/Pages/Home/Notifications";
 import AddFund from "../src/Pages/Home/AddFund";
 import Withdraw from "../src/Pages/Home/Withdraw";
-import CreateGoal from "../src/Pages/Savings/CreateGoal";
-import AddCreateGoal from "../src/Pages/Savings/Create";
+import GoalSavings from "../src/Pages/Savings/GoalSavings";
+import AddCreateGoal from "../src/Pages/Savings/CreateGoal";
 import AddCreateGoalNext from "../src/Pages/Savings/NextCreateGoal";
 import ViewGoal from "../src/Pages/Savings/ViewGoal";
 import AddFundsGoal from "../src/Pages/Savings/AddFunds";
 import GoalSettings from "../src/Pages/Savings/GoalSetting";
 import ExtendedGoal from "../src/Pages/Savings/ExtendedGoal";
-import LockedHome from "../src/Pages/Locked/Locked";
+import LockedHome from "../src/Pages/Locked/LockedSavings";
 import ViewLocked from "../src/Pages/Savings/ViewLocked";
 import LockedFundForm from "../src/Pages/Locked/LockedFund";
 import AboutOpp from "../src/Pages/Locked/AboutOppurtunity";
@@ -93,7 +93,7 @@ const MyStack = () => {
 			<Stack.Screen name="NotificationPage" component={NotificationPage} />
 			<Stack.Screen name="AddFund" component={AddFund} />
 			<Stack.Screen name="Withdraw" component={Withdraw} />
-			<Stack.Screen name="CreateGoal" component={CreateGoal} />
+			<Stack.Screen name="GoalSavings" component={GoalSavings} />
 			<Stack.Screen name="AddCreateGoal" component={AddCreateGoal} />
 			<Stack.Screen name="AddCreateGoalNext" component={AddCreateGoalNext} />
 			<Stack.Screen name="ViewGoal" component={ViewGoal} />

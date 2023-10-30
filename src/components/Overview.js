@@ -15,9 +15,13 @@ const Paginator = ({ data, scrollX }) => {
 	const { width } = useWindowDimensions();
 	return (
 		<View style={card.indicatorContainer}>
-			{data.map((_, i) => {
+			{data.map((_, index) => {
 				// const inputRange = [(i - 1) * (width - 32)];
-				const inputRange = [(i - 1) * width, i * width, (i + 1) * width];
+				const inputRange = [
+					(index - 1) * width,
+					index * width,
+					(index + 1) * width,
+				];
 
 				const dotWidth = scrollX.interpolate({
 					inputRange,
@@ -33,7 +37,7 @@ const Paginator = ({ data, scrollX }) => {
 
 				return (
 					<Animated.View
-						key={i}
+						key={index}
 						style={[
 							card.indicatorNormal,
 							{ width: dotWidth, backgroundColor: dotColor },

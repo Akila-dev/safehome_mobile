@@ -71,7 +71,7 @@ const Withdraw = () => {
 							}}
 						>
 							<Text style={text.header}>Withdraw Funds</Text>
-							<Text style={text.content}>
+							<Text style={text.light}>
 								Instantly Withdrawal funds to your account.{" "}
 							</Text>
 						</View>

@@ -11,10 +11,11 @@ import {
 import React, { useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { useNavigation } from "@react-navigation/native";
+
 import { color, size, font } from "../../utilities/constants";
 import { button, formStyle, text } from "../../utilities/styles";
 
-const AddFund = () => {
+const AddFunds = () => {
 	const navigation = useNavigation();
 	const [focusedInput, setFocusedInput] = useState(null);
 	const [ammount, setAmmount] = useState("");
@@ -71,13 +72,13 @@ const AddFund = () => {
 							}}
 						>
 							<Text style={text.header}>Add Funds</Text>
-							<Text style={text.content}>
+							<Text style={text.light}>
 								Instantly add funds to your account.{" "}
 							</Text>
 						</View>
 						<View
 							style={{
-								marginTop: 24,
+								marginTop: 0,
 							}}
 						>
 							<View>
@@ -127,7 +128,7 @@ const AddFund = () => {
 	);
 };
 
-export default AddFund;
+export default AddFunds;
 
 // const styles = StyleSheet.create({
 // 	header: {

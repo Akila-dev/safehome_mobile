@@ -1,27 +1,32 @@
 {
-	"expo": {
-		"name": "safehome",
-		"slug": "safehome",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"userInterfaceStyle": "light",
-		"splash": {
-			"image": "./assets/splash.png",
-			"resizeMode": "cover"
-		},
-		"assetBundlePatterns": ["**/*"],
-		"ios": {
-			"supportsTablet": true,
-			"bundleIdentifier": "safehome"
-		},
-		"android": {
-			"adaptiveIcon": {
-				"backgroundColor": "#ffffff"
-			}
-		},
-		"web": {},
-		"extra": {
-			"eas": {}
-		}
-	}
+  "expo": {
+    "name": "safehome",
+    "slug": "safehome",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "safehome"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.sigmaz.safehome"
+    },
+    "web": {},
+    "extra": {
+      "eas": {
+        "projectId": "017270d8-bf41-4997-914a-3c7edb6b5ea2"
+      }
+    }
+  }
 }

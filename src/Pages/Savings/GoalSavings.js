@@ -10,14 +10,13 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { FontAwesome5 } from "react-native-vector-icons";
-import Transaction from "../components/Transaction";
-import Overview from "../components/Overview";
+import Transaction from "../../components/Transaction";
+import Overview from "../../components/Overview";
 import { useNavigation } from "@react-navigation/native";
-import GoalsComponent from "../components/Goals";
-const imageHouse = require("../images/house.png");
+import GoalsComponent from "../../components/Goals";
 
-import { color, size, font } from "../utilities/constants";
-import { button, formStyle, text, card, tab } from "../utilities/styles";
+import { color, size, font } from "../../utilities/constants";
+import { button, formStyle, text, card, tab } from "../../utilities/styles";
 
 const overviewData = [
 	{
@@ -35,7 +34,7 @@ const overviewData = [
 ];
 
 const OngoingSavingsComponent = () => (
-	<View style={{ gap: 15, marginTop: 10 }}>
+	<View style={{ gap: 15 }}>
 		<GoalsComponent />
 		<GoalsComponent />
 		<GoalsComponent />
@@ -53,29 +52,24 @@ const CompletedComponent = () => (
 		}}
 	>
 		<FontAwesome5 name="bullseye" size={48} />
-		<Text
-			style={[
-				styles.texts,
-				{ textAlign: "center", marginTop: 24, fontFamily: font.light },
-			]}
-		>
+		<Text style={[text.light, { textAlign: "center", marginTop: 24 }]}>
 			You have no Completed savings plan, Create a goal or lock funds to get
 			started.
 		</Text>
 	</View>
 );
 
-const TransactionsComponent = () => (
-	<View>
-		<Transaction />
-		<Transaction />
-		<Transaction />
-		<Transaction />
-	</View>
-);
-
-const PiggyHome = () => {
+const GoalSavings = () => {
 	const [selectedComponent, setSelectedComponent] = useState("Ongoing Savings");
+	const headerTintColor = "#000000";
+
+	React.useLayoutEffect(() => {
+		navigation.setOptions({
+			title: "",
+			headerTintColor,
+			headerBackTitleVisible: false,
+		});
+	}, [navigation]);
 
 	const navigation = useNavigation();
 	return (
@@ -83,6 +77,7 @@ const PiggyHome = () => {
 			style={{
 				flex: 1,
 				backgroundColor: "#ffffff",
+				marginTop: -24,
 			}}
 		>
 			<ScrollView
@@ -124,17 +119,10 @@ const PiggyHome = () => {
 					}}
 				>
 					<TouchableOpacity
-						onPress={() => navigation.navigate("CreateGoal")}
-						style={button.fill}
+						onPress={() => navigation.navigate("AddCreateGoal")}
+						style={[button.fill]}
 					>
-						<Text style={text.buttonFill}>Goal Savings</Text>
-					</TouchableOpacity>
-
-					<TouchableOpacity
-						onPress={() => navigation.navigate("LockedHome")}
-						style={button.outline}
-					>
-						<Text style={text.buttonOutline}>Locked Savings</Text>
+						<Text style={text.buttonFill}>Create Goal</Text>
 					</TouchableOpacity>
 				</View>
 
@@ -145,11 +133,10 @@ const PiggyHome = () => {
 					}}
 				>
 					<View>
-						<ScrollView
-							horizontal={true}
-							showsHorizontalScrollIndicator={false}
+						<View
 							style={{
-								marginBottom: 10,
+								marginBottom: 20,
+								justifyContent: "space-around",
 								flexDirection: "row",
 							}}
 						>
@@ -158,7 +145,6 @@ const PiggyHome = () => {
 									style={[
 										tab.normal,
 										selectedComponent === "Ongoing Savings" && tab.active,
-										{ marginRight: 16 },
 									]}
 									onPress={() => setSelectedComponent("Ongoing Savings")}
 								>
@@ -171,31 +157,17 @@ const PiggyHome = () => {
 									style={[
 										tab.normal,
 										selectedComponent === "Completed" && tab.active,
-										{ marginRight: 16 },
 									]}
 									onPress={() => setSelectedComponent("Completed")}
 								>
 									Completed
 								</Text>
 							</View>
-							<View>
-								<Text
-									style={[
-										tab.normal,
-										selectedComponent === "Transactions" && tab.active,
-									]}
-									onPress={() => setSelectedComponent("Transactions")}
-								>
-									Transactions
-								</Text>
-							</View>
-						</ScrollView>
-
+						</View>
 						{selectedComponent === "Ongoing Savings" && (
 							<OngoingSavingsComponent />
 						)}
 						{selectedComponent === "Completed" && <CompletedComponent />}
-						{selectedComponent === "Transactions" && <TransactionsComponent />}
 					</View>
 				</View>
 			</ScrollView>
@@ -203,7 +175,7 @@ const PiggyHome = () => {
 	);
 };
 
-export default PiggyHome;
+export default GoalSavings;
 
 const styles = StyleSheet.create({
 	hi: {
@@ -233,14 +205,14 @@ const styles = StyleSheet.create({
 		borderRadius: 16,
 	},
 	cards: {
-		width: 300,
+		width: Dimensions.get("window").width,
 		height: 200,
 		borderRadius: 12,
 		padding: 24,
 		flexDirection: "column",
 		justifyContent: "space-between",
 		//marginRight: 16,
-		//width: "100%",
+		width: "100%",
 	},
 	price: {
 		fontSize: 28,
@@ -261,12 +233,12 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		color: "white",
-		fontSize: 14,
+		fontSize: 16,
 		fontFamily: "Regular",
 	},
 	texts: {
 		color: "#1E0700",
-		fontSize: 14,
+		fontSize: 16,
 		fontFamily: "Regular",
 	},
 	withdraw: {
@@ -280,14 +252,15 @@ const styles = StyleSheet.create({
 	},
 	transaction: {
 		color: "#121212",
-		fontSize: 14,
+		fontSize: 12,
 		fontFamily: "MontserratLight",
 	},
 	activeText: {
 		color: "#ff9100",
-		paddingBottom: 5,
+		paddingBottom: 1,
 		borderColor: "#ff9100",
-		borderBottomWidth: 2,
+		borderBottomWidth: 3,
+		borderRadius: 2,
 		fontFamily: "MontserratSemiBold",
 	},
 	goalComponent: {
