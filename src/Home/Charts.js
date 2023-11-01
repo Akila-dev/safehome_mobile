@@ -16,6 +16,7 @@ import Overview from "../components/Overview";
 import { useNavigation } from "@react-navigation/native";
 import GoalsComponentInvestment from "../components/Investment";
 import Tabs from "../components/Tabs";
+import Header from "../components/Header";
 const imageHouse = require("../images/house.png");
 const fontScale = PixelRatio.getFontScale();
 const getFontSize = (size) => size / fontScale;
@@ -25,7 +26,7 @@ import { button, formStyle, text, card, tab } from "../utilities/styles";
 
 const overviewData = [
 	{
-		icon: "bullseye",
+		icon: "chart-bar",
 		title: "Total Balance",
 		price: "₦1,000,000.00",
 		pa: "10% p.a",
@@ -127,28 +128,7 @@ const Charts = () => {
 					padding: 16,
 				}}
 			>
-				<View style={[styles.topView]}>
-					<View style={styles.viewWidths}>
-						<Text style={styles.name}>Investments</Text>
-					</View>
-					<TouchableOpacity
-						onPress={() => navigation.navigate("NotificationPage")}
-						style={styles.viewNotification}
-					>
-						<FontAwesome5 name="bell" size={28} />
-						<View
-							style={{
-								width: 8,
-								height: 8,
-								backgroundColor: "#ff0000",
-								position: "absolute",
-								borderRadius: 12,
-								right: 6,
-								top: 10,
-							}}
-						></View>
-					</TouchableOpacity>
-				</View>
+				<Header name="Investment" />
 
 				<Overview data={overviewData} type="investments" />
 

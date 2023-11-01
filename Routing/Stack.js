@@ -81,7 +81,7 @@ const MyStack = () => {
 			/>
 			<Stack.Screen
 				name="KYCProcessing"
-				//     options={{ headerShown: false }}
+				options={{ headerShown: false }}
 				component={KYCProcessing}
 			/>
 			<Stack.Screen

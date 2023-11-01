@@ -21,7 +21,10 @@ export const size = {
 	lg: getFontSize(20),
 	xl: getFontSize(22),
 	xxl: getFontSize(28),
+	xxxl: getFontSize(30),
 	tab: getFontSize(14),
+	logoH: 40,
+	logoW: 92,
 };
 
 export const font = {

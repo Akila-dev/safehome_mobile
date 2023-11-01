@@ -15,6 +15,7 @@ import { useNavigation } from "@react-navigation/native";
 import LockedGoal from "../../components/LockedGoal";
 import Tabs from "../../components/Tabs";
 import Overview from "../../components/Overview";
+import Header from "../../components/Header";
 const imageHouse = require("../../images/house.png");
 
 import { color, size, font } from "../../utilities/constants";
@@ -121,31 +122,10 @@ const LockedHome = () => {
 		>
 			<ScrollView
 				style={{
-					padding: 16,
+					paddingHorizontal: 16,
 				}}
 			>
-				<View style={[styles.topView]}>
-					<View style={styles.viewWidths}>
-						<Text style={styles.name}>Locked Savings</Text>
-					</View>
-					<TouchableOpacity
-						onPress={() => navigation.navigate("NotificationPage")}
-						style={styles.viewNotification}
-					>
-						<FontAwesome5 name="bell" size={28} />
-						<View
-							style={{
-								width: 8,
-								height: 8,
-								backgroundColor: "#ff0000",
-								position: "absolute",
-								borderRadius: 12,
-								right: 6,
-								top: 10,
-							}}
-						></View>
-					</TouchableOpacity>
-				</View>
+				<Header name="Locked Savings" type="popup" />
 
 				<Overview data={overviewData} type="investments" />
 

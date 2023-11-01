@@ -14,6 +14,7 @@ import Transaction from "../../components/Transaction";
 import Overview from "../../components/Overview";
 import { useNavigation } from "@react-navigation/native";
 import GoalsComponent from "../../components/Goals";
+import Header from "../../components/Header";
 
 import { color, size, font } from "../../utilities/constants";
 import { button, formStyle, text, card, tab } from "../../utilities/styles";
@@ -85,28 +86,7 @@ const GoalSavings = () => {
 					padding: 16,
 				}}
 			>
-				<View style={[styles.topView]}>
-					<View style={styles.viewWidths}>
-						<Text style={styles.name}>Savings</Text>
-					</View>
-					<TouchableOpacity
-						onPress={() => navigation.navigate("NotificationPage")}
-						style={styles.viewNotification}
-					>
-						<FontAwesome5 name="bell" size={28} />
-						<View
-							style={{
-								width: 8,
-								height: 8,
-								backgroundColor: "#ff0000",
-								position: "absolute",
-								borderRadius: 12,
-								right: 6,
-								top: 10,
-							}}
-						></View>
-					</TouchableOpacity>
-				</View>
+				<Header name="Goal Savings" type="popup" />
 
 				<Overview data={overviewData} type="savings" />
 

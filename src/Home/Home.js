@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesome5 } from "react-native-vector-icons";
 import Transaction from "../components/Transaction";
 import Overview from "../components/Overview";
+import Header from "../components/Header";
 import { useNavigation } from "@react-navigation/native";
 
 import { color, size, font } from "../utilities/constants";
@@ -88,29 +89,7 @@ const Home = () => {
 					padding: 16,
 				}}
 			>
-				<View style={[styles.topView]}>
-					<View style={styles.viewWidths}>
-						<Text style={styles.hi}>Hello</Text>
-						<Text style={styles.name}>Ibeneme!</Text>
-					</View>
-					<TouchableOpacity
-						onPress={() => navigation.navigate("NotificationPage")}
-						style={styles.viewNotification}
-					>
-						<FontAwesome5 name="bell" size={28} />
-						<View
-							style={{
-								width: 8,
-								height: 8,
-								backgroundColor: "#ff0000",
-								position: "absolute",
-								borderRadius: 12,
-								right: 6,
-								top: 10,
-							}}
-						></View>
-					</TouchableOpacity>
-				</View>
+				<Header type="home" name="Ibeneme" />
 
 				<Overview data={overviewData} type="home" />
 

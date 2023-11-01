@@ -44,7 +44,7 @@ const ViewInvestment = () => {
 						backgroundColor: "#fff",
 						padding: 16,
 						width: "100%",
-						// marginBottom: 220,
+						marginBottom: 20,
 					}}
 				>
 					<Text style={[text.darkHeader, { textTransform: "uppercase" }]}>

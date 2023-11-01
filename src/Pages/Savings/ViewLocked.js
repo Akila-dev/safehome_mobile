@@ -17,7 +17,13 @@ import Tabs from "../../components/Tabs";
 import Highlight from "../../components/Highlight";
 
 import { color, size, font } from "../../utilities/constants";
-import { button, formStyle, text, card } from "../../utilities/styles";
+import {
+	button,
+	formStyle,
+	text,
+	card,
+	goalCard,
+} from "../../utilities/styles";
 
 const ViewLocked = () => {
 	const navigation = useNavigation();
@@ -51,6 +57,7 @@ const ViewLocked = () => {
 						Smart Office Lekki
 					</Text>
 
+					{/* Card */}
 					<View>
 						<View
 							style={{
@@ -62,104 +69,95 @@ const ViewLocked = () => {
 									marginTop: 24,
 									width: "100%",
 									borderRadius: 8,
-									height: 250,
+									height: 260,
 								}}
 								source={house}
 							/>
 							<View
 								style={{
 									position: "absolute",
-									bottom: "10%",
-									top: "10%",
-									backgroundColor: "#Ffffff",
-									fontSize: 28,
-									height: 200,
-									width: "92%",
-									margin: 16,
-									textAlign: "center",
-									fontFamily: "MontserratSemiBold",
+									bottom: 0,
+									top: 24,
+									height: 260,
+									width: "100%",
+									padding: 16,
 								}}
 							>
-								<View>
-									<View
-										style={{
-											flexDirection: "row",
-										}}
-									>
+								<View
+									style={{
+										backgroundColor: "white",
+										flex: 1,
+										borderRadius: 12,
+										padding: 16,
+										gap: 20,
+									}}
+								>
+									<View style={{ flex: 1, width: "100%", gap: 12 }}>
 										<View
-											style={[
-												styles.flexDisplay,
-												{ borderWidth: 0, width: 120 },
-											]}
+											style={[goalCard.flexGoal, { flex: 1, flexWrap: "wrap" }]}
 										>
-											<Text style={styles.content}>Group Balance</Text>
-											<Text style={styles.contentGoal}>₦500,000</Text>
-										</View>
-										<View
-											style={[
-												styles.flexDisplay,
-												{ borderWidth: 0, width: 120 },
-											]}
-										>
-											<Text style={styles.content}>Target</Text>
-											<Text style={styles.contentGoal}>₦500,000</Text>
-										</View>
-										<View
-											style={[
-												styles.flexDisplay,
-												{ borderWidth: 0, width: 120 },
-											]}
-										>
-											<Text style={styles.content}>Member</Text>
-											<Text style={styles.contentGoal}>14</Text>
-										</View>
-									</View>
-								</View>
-								<View>
-									<View
-										style={{
-											flexDirection: "row",
-										}}
-									>
-										<View
-											style={[
-												styles.flexDisplay,
-												{ borderWidth: 0, width: "100%" },
-											]}
-										>
-											<Text style={styles.content}>Group Balance</Text>
-											<View
-												style={{
-													backgroundColor: "#d9d9d945",
-													width: "100%",
-													borderRadius: 12,
-													height: 12,
-												}}
-											>
-												<View
-													style={{
-														backgroundColor: "#8D4000",
-														width: "40%",
-														borderRadius: 12,
-														height: 12,
-													}}
-												></View>
+											<View style={{ flex: 1 }}>
+												<Text style={[text.content, { fontSize: size.sm }]}>
+													Balance
+												</Text>
+												<Text style={goalCard.price}>₦500,000</Text>
+											</View>
+											<View style={{ flex: 1 }}>
+												<Text style={[text.content, { fontSize: size.sm }]}>
+													Target
+												</Text>
+												<Text style={goalCard.price}>₦500,000</Text>
 											</View>
 										</View>
-									</View>
-									<View
-										style={{
-											flexDirection: "row",
-										}}
-									>
-										<View
-											style={[
-												styles.flexDisplay,
-												{ borderWidth: 0, width: "100%" },
-											]}
-										>
-											<Text style={styles.content}>Available Units: 200</Text>
+										<View style={{ flex: 1 }}>
+											<Text style={[text.content, { fontSize: size.sm }]}>
+												Members
+											</Text>
+											<Text style={goalCard.price}>14</Text>
 										</View>
+									</View>
+									<View>
+										<View
+											style={{
+												flexDirection: "row",
+											}}
+										>
+											<View style={[{ gap: 12, width: "100%" }]}>
+												<Text style={text.content}>Group Balance</Text>
+												<View
+													style={[goalCard.flexGoal, { alignItems: "center" }]}
+												>
+													<View
+														style={{
+															flex: 1,
+															height: 8,
+															backgroundColor: color.b1,
+															borderRadius: 12,
+														}}
+													>
+														<View
+															style={{
+																width: 30,
+																height: 8,
+																backgroundColor: color.highlight,
+																borderRadius: 12,
+															}}
+														></View>
+													</View>
+													<Text style={text.content}>10%</Text>
+												</View>
+												<Text style={[text.content, { fontSize: size.sm }]}>
+													Available Units: 200
+												</Text>
+											</View>
+										</View>
+										{/* <View
+											style={{
+												flexDirection: "row",
+											}}
+										>
+												<Text style={styles.content}>Available Units: 200</Text>
+											</View> */}
 									</View>
 								</View>
 							</View>
@@ -184,13 +182,13 @@ const ViewLocked = () => {
 								style={button.fill}
 								onPress={() => navigation.navigate("LockedFundForm")}
 							>
-								<Text style={text.buttonFill}>Create Goal</Text>
+								<Text style={text.buttonFill}>Locked Funds</Text>
 							</TouchableOpacity>
 							<TouchableOpacity
 								style={button.outline}
 								onPress={() => navigation.navigate("AboutOpp")}
 							>
-								<Text style={text.buttonOutline}>Cancel</Text>
+								<Text style={text.buttonOutline}>About Opportunity</Text>
 							</TouchableOpacity>
 						</View>
 					</View>

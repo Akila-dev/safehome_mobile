@@ -130,13 +130,13 @@ const Overview = ({ data, type }) => {
 	return (
 		<View>
 			<Paginator data={data} scrollX={scrollX} />
-			<View style={{ marginTop: 10 }}>
+			<View style={{ marginTop: 15 }}>
 				<FlatList
 					data={data}
 					horizontal
 					showsHorizontalScrollIndicator={false}
 					renderItem={({ item, index }) => (
-						<View>
+						<View key={index}>
 							{type === "home" ? (
 								<HomeOverviewCard
 									icon={item.icon}
@@ -178,26 +178,3 @@ const Overview = ({ data, type }) => {
 };
 
 export default Overview;
-
-{
-	/* <ScrollView
-			horizontal={true}
-			showsHorizontalScrollIndicator={false}
-			style={{
-				marginTop: 20,
-				flexDirection: "row",
-			}}
-		>
-			{type === "home" &&
-				data.map((item, id) => (
-					<HomeOverviewCard
-						key={id}
-						icon={item.icon}
-						bg={item.bg}
-						title={item.title}
-						price={item.price}
-						additionalStyle={id + 1 === data.length && { marginRight: 0 }}
-					/>
-				))}
-		</ScrollView> */
-}

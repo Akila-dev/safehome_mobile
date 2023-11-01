@@ -25,7 +25,7 @@ export const formStyle = {
 	label: {
 		marginTop: 28,
 		marginBottom: 8,
-		fontFamily: "Regular",
+		fontFamily: font.regular,
 		fontSize: size.base,
 		color: color.text,
 	},
@@ -33,7 +33,7 @@ export const formStyle = {
 		borderRadius: 8,
 		backgroundColor: color.b1,
 		fontSize: size.base,
-		fontFamily: "Regular",
+		fontFamily: font.light,
 		padding: 10,
 		marginTop: 4,
 		// marginBottom: 24,
@@ -60,7 +60,7 @@ export const formStyle = {
 		placeholder: {
 			fontSize: size.base,
 			color: color.placeholder,
-			fontFamily: font.regular,
+			fontFamily: font.light,
 		},
 	},
 };
@@ -71,6 +71,12 @@ export const text = {
 		fontFamily: font.semibold,
 		textAlign: "left",
 		color: color.highlight,
+	},
+	navHeader: {
+		fontSize: size.xl,
+		fontFamily: font.semibold,
+		textAlign: "left",
+		color: color.button,
 	},
 	darkHeader: {
 		fontSize: size.lg,
@@ -98,7 +104,7 @@ export const text = {
 	buttonOutline: {
 		color: color.text,
 		fontSize: size.base,
-		fontFamily: "Regular",
+		fontFamily: font.regular,
 	},
 };
 
@@ -119,12 +125,11 @@ export const card = {
 	},
 	title: {
 		fontSize: size.md,
-		fontFamily: "Regular",
+		fontFamily: font.regular,
 	},
 	indicatorContainer: {
 		flexDirection: "row",
 		justifyContent: "flex-end",
-		marginTop: 12,
 		gap: 4,
 	},
 	indicatorActive: {
@@ -238,4 +243,15 @@ export const flex = {
 		flexDirection: "row",
 		gap: 15,
 	},
+};
+
+export const imgStyle = {
+	logoContainer: {
+		width: "100%",
+		justifyContent: "center",
+		alignItems: "center",
+		marginTop: 30,
+		gap: 10,
+	},
+	logo: { height: size.logoH, width: size.logoW },
 };
