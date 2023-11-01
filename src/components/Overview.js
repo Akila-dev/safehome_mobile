@@ -139,6 +139,7 @@ const Overview = ({ data, type }) => {
 						<View key={index}>
 							{type === "home" ? (
 								<HomeOverviewCard
+									key={index}
 									icon={item.icon}
 									bg={item.bg}
 									title={item.title}

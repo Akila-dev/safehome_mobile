@@ -33,7 +33,7 @@ export const formStyle = {
 		borderRadius: 8,
 		backgroundColor: color.b1,
 		fontSize: size.base,
-		fontFamily: font.light,
+		fontFamily: font.regular,
 		padding: 10,
 		marginTop: 4,
 		// marginBottom: 24,
@@ -60,7 +60,7 @@ export const formStyle = {
 		placeholder: {
 			fontSize: size.base,
 			color: color.placeholder,
-			fontFamily: font.light,
+			fontFamily: font.regular,
 		},
 	},
 };

@@ -252,7 +252,7 @@ const KYCVerification = () => {
 					<View>
 						<View style={[styles.viewForLogo, { marginTop: 10 }]}>
 							<Text style={text.header}>KYC Verification</Text>
-							<Text style={text.content}>
+							<Text style={text.light}>
 								Ensure your name matches the name on Documents provided.
 							</Text>
 						</View>
@@ -375,77 +375,10 @@ const KYCVerification = () => {
 export default KYCVerification;
 
 const styles = StyleSheet.create({
-	logo: {
-		height: 60,
-		width: 160,
-	},
 	viewForLogo: {
 		width: "100%",
 		justifyContent: "center",
 		alignItems: "center",
 		marginTop: 48,
-	},
-	header: {
-		fontSize: 24,
-		fontFamily: "Bold",
-		textAlign: "left",
-	},
-	content: {
-		color: "#1A374D",
-		fontFamily: "Light",
-		marginTop: 4,
-		fontSize: 14,
-	},
-	textInput: {
-		height: 56,
-		borderRadius: 8,
-		backgroundColor: "#F9F9F9",
-		fontSize: 14,
-		fontFamily: "Regular",
-		padding: 20,
-		marginTop: 4,
-		// marginBottom: 24,
-		width: "100%",
-	},
-	textLabel: {
-		marginTop: 32,
-		fontFamily: "Regular",
-		fontSize: 16,
-	},
-	buttonText: {
-		fontFamily: "Regular",
-		fontSize: 16,
-		color: "#ffffff",
-	},
-	button: {
-		height: 56,
-		backgroundColor: "#1E0700",
-		marginTop: 64,
-		padding: 16,
-		width: "100%",
-		justifyContent: "center",
-		alignItems: "center",
-		borderRadius: 4,
-	},
-	orangeText: {
-		color: "#FF6100",
-		textAlign: "center",
-		fontFamily: "Regular",
-		fontSize: 16,
-	},
-	textLabel: {
-		marginTop: 24,
-		fontFamily: "Regular",
-		fontSize: 16,
-	},
-	dropdown: {
-		height: 55,
-		// borderColor: `${theme.text}65`,
-		//  borderWidth: 0.5,
-		borderRadius: 8,
-		paddingHorizontal: 8,
-		marginTop: 4,
-		// color: gray
-		backgroundColor: "#f9f9f9",
 	},
 });

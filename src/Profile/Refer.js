@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome5 } from "@expo/vector-icons";
 import Overview from "../components/Overview";
+import CopyButton from "../components/CopyButton";
 
 import { color, size, font } from "../utilities/constants";
-import { button, formStyle, text, card, tab } from "../utilities/styles";
+import { button, formStyle, text, card, flex } from "../utilities/styles";
 
 const overviewData = [
 	{
@@ -19,6 +20,17 @@ const overviewData = [
 		bg: "#FF610010",
 		title: "Number of referrals",
 		price: "3",
+	},
+];
+
+const refersData = [
+	{
+		name: "Ibeneme Ibenemeeeeeeeeeeeeee",
+		date: "10/10/2023",
+	},
+	{
+		name: "Ibeneme Ibeneme",
+		date: "10/10/2023",
 	},
 ];
 
@@ -48,53 +60,32 @@ const Refer = () => {
 						flex: 1,
 						backgroundColor: "#fff",
 						padding: 16,
-						marginBottom: 220,
+						marginBottom: 20,
 					}}
 				>
 					<View>
-						<View
-							style={{
-								marginTop: 0,
-							}}
+						<Text
+							style={[text.darkHeader, { fontSize: size.xl, marginBottom: 0 }]}
 						>
-							<Text style={[text.darkHeader, { fontSize: size.xl }]}>
-								Refer & Earn
-							</Text>
-						</View>
-						<View
-							style={{
-								marginTop: 0,
-							}}
-						>
-							<Overview data={overviewData} type="home" />
-
-							<View style={styles.textInputs}>
-								<Text style={styles.textLabels}>shhshshshgsff</Text>
-								<View style={styles.viewss}>
-									<FontAwesome5 name="copy" size={20} />
-									<Text style={styles.textLabels}>Copy Link {""}</Text>
-								</View>
-							</View>
-
-							<View style={styles.textInputs}>
-								<Text style={styles.textLabels}>shhshshshgsff</Text>
-								<View style={styles.viewss}>
-									<FontAwesome5 name="copy" size={20} />
-									<Text style={styles.textLabels}>Copy Link {""}</Text>
-								</View>
-							</View>
-						</View>
-					</View>
-					<View
-						style={{
-							flexDirection: "row",
-							justifyContent: "space-between",
-							marginTop: 64,
-						}}
-					>
-						<Text style={[styles.textLabels, { fontSize: 18 }]}>
-							Referral History
+							Refer & Earn
 						</Text>
+						<Overview data={overviewData} type="home" />
+					</View>
+
+					<View style={{ marginVertical: 38, gap: 15 }}>
+						<CopyButton link="shhshshshgsff" type="Link" />
+						<CopyButton link="shhshshshgsff" type="Code" />
+					</View>
+
+					<View
+						style={[
+							flex.row,
+							{
+								justifyContent: "space-between",
+							},
+						]}
+					>
+						<Text style={[text.darkHeader]}>Referral History</Text>
 						<View
 							style={{
 								flexDirection: "row",
@@ -103,37 +94,41 @@ const Refer = () => {
 							}}
 						>
 							<View>
-								<FontAwesome5 name="search" size={24} />
+								<FontAwesome5
+									name="search"
+									size={20}
+									style={{ color: color.button }}
+								/>
 							</View>
-							<FontAwesome5 name="bars" size={24} />
+							<FontAwesome5
+								name="bars"
+								size={20}
+								style={{ color: color.button }}
+							/>
 						</View>
 					</View>
-					<View
-						style={{
-							flexDirection: "row",
-							justifyContent: "space-around",
-							height: 55,
-							marginTop: 32,
-							backgroundColor: "#f9f9f9",
-							alignItems: "center",
-						}}
-					>
-						<Text style={styles.textLabels}>1</Text>
-						<Text style={styles.textLabels}>Ibeneme Ibeneme</Text>
-						<Text style={styles.textLabels}>10/10/2023</Text>
-					</View>
-					<View
-						style={{
-							flexDirection: "row",
-							justifyContent: "space-around",
-							height: 55,
-							backgroundColor: "#fff",
-							alignItems: "center",
-						}}
-					>
-						<Text style={styles.textLabels}>2</Text>
-						<Text style={styles.textLabels}>Ibeneme Ibeneme</Text>
-						<Text style={styles.textLabels}>10/10/2023</Text>
+
+					<View style={{ marginTop: 15 }}>
+						{refersData.map((item, index) => (
+							<View
+								key={index}
+								style={{
+									flexDirection: "row",
+									justifyContent: "space-around",
+									height: 55,
+									backgroundColor: index % 2 === 0 ? color.b1 : "white",
+									alignItems: "center",
+									gap: 15,
+									paddingHorizontal: 15,
+								}}
+							>
+								<Text style={[text.content]}>{index + 1}</Text>
+								<Text style={[text.content, { flex: 1 }]} numberOfLines={1}>
+									{item.name}
+								</Text>
+								<Text style={[text.content]}>{item.date}</Text>
+							</View>
+						))}
 					</View>
 				</View>
 			</ScrollView>

@@ -105,7 +105,7 @@ const EmailVerification = () => {
 							}
 						>
 							<Text style={text.header}>Email Verification</Text>
-							<Text style={text.content}>
+							<Text style={text.light}>
 								A code has been sent to Example@gmail.com, kindly input the code
 								to confirm Signup.
 							</Text>

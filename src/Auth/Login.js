@@ -50,12 +50,8 @@ const Login = () => {
 
 				<View>
 					<View style={[{ alignItems: "center" }]}>
-						<Text style={[text.header, { textAlign: "center" }]}>
-							Login to your account
-						</Text>
-						<Text style={[text.content, { textAlign: "center" }]}>
-							Securely login to your safeHome
-						</Text>
+						<Text style={[text.header]}>Login to your account</Text>
+						<Text style={[text.light]}>Securely login to your safeHome</Text>
 					</View>
 					<View>
 						<View>
@@ -98,6 +94,7 @@ const Login = () => {
 					style={{
 						justifyContent: "center",
 						alignItems: "center",
+						gap: 5,
 					}}
 				>
 					<Text

@@ -10,6 +10,7 @@ export const color = {
 	b1: "#f9f9f9",
 	placeholder: "#9f9f9f",
 	lines: "#e6e6e6",
+	lines2: "#f5f5f5",
 };
 
 export const size = {

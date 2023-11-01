@@ -99,12 +99,8 @@ const CreateAccount = () => {
 					</View> */}
 					<View>
 						<View style={[styles.viewForLogo, { marginTop: 10 }]}>
-							<Text style={[text.header, { textAlign: "center" }]}>
-								Personal Information
-							</Text>
-							<Text style={[text.content, { textAlign: "center" }]}>
-								Securely sign up to safeHome
-							</Text>
+							<Text style={[text.header]}>Personal Information</Text>
+							<Text style={[text.light]}>Securely sign up to safeHome</Text>
 						</View>
 						<View
 							style={{
