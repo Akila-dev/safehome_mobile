@@ -135,18 +135,16 @@ const Overview = ({ data, type }) => {
 					data={data}
 					horizontal
 					showsHorizontalScrollIndicator={false}
-					renderItem={({ item, index }) => (
-						<View key={index}>
+					keyExtractor={(item, index) => item.id}
+					renderItem={({ item, id }) => (
+						<View key={id}>
 							{type === "home" ? (
 								<HomeOverviewCard
-									key={index}
 									icon={item.icon}
 									bg={item.bg}
 									title={item.title}
 									price={item.price}
-									additionalStyle={
-										index + 1 === data.length && { marginRight: 0 }
-									}
+									additionalStyle={id + 1 === data.length && { marginRight: 0 }}
 								/>
 							) : (
 								<SavingsOverviewCard
@@ -154,14 +152,11 @@ const Overview = ({ data, type }) => {
 									title={item.title}
 									price={item.price}
 									pa={item.pa}
-									additionalStyle={
-										index + 1 === data.length && { marginRight: 0 }
-									}
+									additionalStyle={id + 1 === data.length && { marginRight: 0 }}
 								/>
 							)}
 						</View>
 					)}
-					keyExtractor={(item) => item.id}
 					// pagingEnabled
 					bounces={false}
 					onScroll={Animated.event(

@@ -22,9 +22,9 @@ const PinEntryScreen = () => {
 	const handlePinPress = (digit) => {
 		if (pin.length < 4) {
 			setPin(pin + digit);
-		}
-		if (pin.length === 4) {
-			navigation.navigate("NavBar");
+			if (pin.length === 4) {
+				navigation.navigate("NavBar");
+			}
 		}
 	};
 

@@ -41,7 +41,7 @@ const Tabs = ({ data, func, selected }) => {
 			}}
 		>
 			{data.map((item, index) => (
-				<View>
+				<View key={index}>
 					<Text
 						style={[
 							tab.normal,
